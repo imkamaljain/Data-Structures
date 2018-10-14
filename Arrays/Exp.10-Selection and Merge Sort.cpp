@@ -72,8 +72,8 @@ int main()
   s2.input();
   s1.selectionsort();
   s2.selectionsort();
-	cout<<"Array1 after sorting: ";
-	s1.display();
+  cout<<"Array1 after sorting: ";
+  s1.display();
   cout<<"\nArray2 after sorting: ";
   s2.display();
   sort s3;
