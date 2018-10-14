@@ -66,7 +66,7 @@ class sort
 };
 int main()
 {
-	sort s1;
+  sort s1;
   s1.input();
   sort s2;
   s2.input();
