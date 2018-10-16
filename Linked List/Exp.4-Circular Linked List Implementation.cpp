@@ -1,32 +1,28 @@
 #include<iostream>
-#include<malloc.h>
 using namespace std;
 struct node
 {
 	int data;
 	struct node *next;
 };
-
 class CircularLinkedList
 {
 	node *head;
 	public:
-	CircularLinkedList() {
-
+	CircularLinkedList() 
+	{
 		head = NULL;
 	}
-
-	void createnode(int val) {
-
+	void createnode(int val) 
+	{
 		node *n;
-		n = (struct node*)malloc(sizeof(node));
+		n = new node;
 		n->data = val;
 		n->next = n;
 		head = n;
 	}
-
-	void insertatbeg(int val) {
-
+	void insertatbeg(int val) 
+	{
 		if(head == NULL)
 			createnode(val);
 		else
@@ -42,11 +38,10 @@ class CircularLinkedList
 			head = firstnode;
 		}
 	}
-
 	void insertatend(int val)
 	{
 		node *ptr,*nn;
-		nn = (struct node*)malloc(sizeof(node));
+		nn = new node;
 		nn->data = val;
 		ptr = head;
 		while(ptr->next!=head)
@@ -54,8 +49,8 @@ class CircularLinkedList
 		ptr->next = nn;
 		nn->next = head;
 	}
-	void traverse() {
-
+	void traverse() 
+	{
 		struct node *cur;
 		cur = head ;
 		if(head == NULL)
@@ -73,7 +68,7 @@ class CircularLinkedList
 	void insertatloc(int val,int loc)
 	{
 		node *ptr,*nn;
-		nn = (struct node*)malloc(sizeof(node));
+		nn = new node;
 		ptr = head;
 		for(int i = 1;i < loc-1 && ptr!=NULL;i++)
 		{
@@ -81,7 +76,8 @@ class CircularLinkedList
 		}
 		if(ptr == NULL)
 			cout<<"Location doesn't exist\n";
-		else {
+		else 
+		{
 			nn->data = val;
 			nn->next = ptr->next;
 			ptr->next = nn;
@@ -94,7 +90,8 @@ class CircularLinkedList
 		ptr = head;
 		if(head->next == head)
 			head = NULL;
-		else {
+		else 
+		{
 			while(ptr->next!=head)
 				ptr = ptr->next;
 			ptr->next = head->next;
@@ -131,8 +128,8 @@ class CircularLinkedList
 		node *ptr;
 		ptr = head;
 		int i = 1;
-		if(ptr->data == item) {
-
+		if(ptr->data == item) 
+		{
 			deletefrombeg();
 		}
 		else {
@@ -141,7 +138,8 @@ class CircularLinkedList
 			{
 				if(ptr->data == item)
 				{
-					if(ptr->next == head) {
+					if(ptr->next == head) 
+					{
 						deletefromend();
 						break;
 					}
@@ -156,8 +154,8 @@ class CircularLinkedList
 			}
 		}
 	}
-	void Search_Cll(int ele) {
-
+	void Search_Cll(int ele) 
+	{
 		struct node *cur = head;
 		int flag = 0;
 		if(head == NULL)
@@ -185,47 +183,39 @@ int main()
 	CircularLinkedList cll;
 	int choice,num;
 	do {
-		cout<<"Enter number to do following operation:-\n1)Inserting element at the beginning\t2)Inserting element at the end\t3)Inserting element at a particular location\n4)Deleting an existing element\t5)Searching the doubly linked list\t6)Displaying doubly linked list\t7)Exit\n";
+		cout<<"Enter your choice:-\n1)Insert an element at the beginning\t2)Insert an element at the end\t3)Insert an element at a particular location\n4)Delete an existing element\t5)Searching the doubly linked list\t6)Displaying doubly linked list\t7)Exit\n";
 		cin>>choice;
 		switch(choice) {
 
-			case 1: cout<<"Enter a number to insert at beginning:\n";
+			case 1: cout<<"Enter a number to insert at beginning: ";
 				cin>>num;
 				cll.insertatbeg(num);
 				break;
-
-			case 2: cout<<"Enter a number to insert at the end:\n";
+			case 2: cout<<"Enter a number to insert at the end: ";
 				cin>>num;
 				cll.insertatend(num);
 				break;
-
 			case 3: int pos;
-				cout<<"Enter a number to insert at a particular location:\n";
+				cout<<"Enter a number to insert at a particular location: ";
 				cin>>num;
-				cout<<"Enter a position where to insert the number:\n";
+				cout<<"Enter a position where to insert the number: ";
 				cin>>pos;
 				cll.insertatloc(num,pos);
 				break;
-
-			case 4:	cout<<"Enter number to delete:\n";
+			case 4:	cout<<"Enter number to delete: ";
 				cin>>num;
 				cll.delete_element(num);
 				break;
-
-			case 5: cout<<"Enter number to search in the Doubly Linked List\n";
-					cin>>num;
-					cll.Search_Cll(num);
-					break;
-
-			case 6: cout<<"Doubly linked list:-\n";
+			case 5: cout<<"Enter number to search in the Doubly Linked List: ";
+				cin>>num;
+				cll.Search_Cll(num);
+				break;
+			case 6: cout<<"Doubly linked list: ";
 				cll.traverse();
 				break;
-
 			case 7: break;
 			default: cout<<"Invalid Input\n";
 		}
-		cout<<"----------------------------------\n";
 	}while(choice != 7);
 	return 0;
 }
-
