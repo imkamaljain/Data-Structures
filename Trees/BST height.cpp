@@ -26,12 +26,12 @@ node* insert(node* node, int val)
 }
 int height(node *root)
 {
-		if (root==NULL)
-			return -1;
-		int leftHeight = height(root->left);
-		int rightHeight = height(root->right);
+    if(root==NULL)
+       return -1;
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
     if(leftHeight>rightHeight)
-		  return leftHeight+1;
+      return leftHeight+1;
     else
       return rightHeight+1;
 }
